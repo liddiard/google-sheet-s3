@@ -4,7 +4,9 @@ Upload a Google Sheet to an Amazon S3 bucket as JSON with objects keyed by heade
 
 ## Why?
 
-Use case: Displaying simple, structured, spreadsheet-like, publicly accessible data on a website (possibly with thousands of simultaneous visitors) that is easily updatable (possibly by multiple people at once) without the overhead and development time of writing, deploying, and maintaining a full-blown web application. Examples: staff directory list, restaurant menu items listing, sports team standings page, live blog. 
+Use case: Displaying simple, structured, spreadsheet-like, publicly accessible data on a website (possibly with thousands of simultaneous visitors) that is easily updatable (possibly by multiple people at once) without the overhead and development time of writing, deploying, and maintaining a full-blown web application. 
+
+Examples: staff directory list, restaurant menu items listing, sports team standings page, live blog. 
 
 ## Why not [alternative]?
 
