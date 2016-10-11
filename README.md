@@ -1,6 +1,6 @@
 # google-sheet-s3
 
-Upload a Google Sheet to an Amazon S3 bucket as JSON with objects keyed by header name. Auto-republish on edit. Correctly maintain number and boolean data types.
+[Google Apps Script](https://developers.google.com/apps-script/) to upload a Google Sheet to an Amazon S3 bucket as JSON with objects keyed by header name. Auto-republish on edit. Correctly maintain number and boolean data types.
 
 ## Why?
 
