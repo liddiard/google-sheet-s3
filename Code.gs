@@ -86,7 +86,7 @@ function updateConfig(form) {
   });
   var message;
   if (hasRequiredProps()) {
-    message = ['Published spreadsheet will be accessible at \nhttps://s3-[region name].amazonaws.com', form.bucketName, form.path, sheet.getId()].join('/');
+    message = 'Published spreadsheet will be accessible at \nhttps://' + form.bucketName + '.s3.amazonaws.com/' + form.path + '/' + sheet.getId();
     publish();
   }
   else {
