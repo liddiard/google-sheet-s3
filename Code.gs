@@ -11,19 +11,19 @@ function publish() {
   if (!hasRequiredProps()) {
     return;
   }
-  
+
   // do nothing if the edited sheet is not the first one
   var sheet = SpreadsheetApp.getActiveSpreadsheet();
   // sheets are indexed from 1 instead of 0
   if (sheet.getActiveSheet().getIndex() > 1) {
     return;
   }
-  
+
   // get cell values from the range that contains data (2D array)
   var rows = sheet
   .getDataRange()
   .getValues();
-  
+
   // filter out empty rows
   rows = rows.filter(function(row){
     return row
@@ -38,7 +38,7 @@ function publish() {
       return rows[0][index].length;
     });
   });
-  
+
   // create an array of objects keyed by header
   var objs = rows
   .slice(1)
@@ -53,7 +53,7 @@ function publish() {
     });
     return obj;
   });
-  
+
   // upload to S3
   // https://engetc.com/projects/amazon-s3-api-binding-for-google-apps-script/
   var props = PropertiesService.getDocumentProperties().getProperties();
@@ -100,7 +100,6 @@ function updateConfig(form) {
 // does not check if the config is valid
 function hasRequiredProps() {
   var props = PropertiesService.getDocumentProperties().getProperties();
-  return (props.bucketName && props.bucketName.length && props.path && props.path.length 
-          && props.awsAccessKeyId && props.awsAccessKeyId.length && props.awsSecretKey && 
-          props.awsSecretKey.length);
+  return (props.bucketName && props.bucketName.length && props.awsAccessKeyId &&
+          props.awsAccessKeyId.length && props.awsSecretKey && props.awsSecretKey.length);
 }

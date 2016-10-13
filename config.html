@@ -2,9 +2,9 @@
 <html>
   <head>
     <base target="_top">
-    
+
     <style>
-    
+
       // https://css-tricks.com/box-sizing/
       html {
         box-sizing: border-box;
@@ -12,20 +12,20 @@
       *, *:before, *:after {
         box-sizing: inherit;
       }
-    
+
       body {
         font-family: Helvetica, Arial, sans-serif;
       }
-    
+
       ul {
         list-style-type: none;
         padding: 0;
       }
-      
+
       li {
         margin: 1em 0;
       }
-    
+
       input[type=text], input[type=password] {
         display: block;
         border: 1px solid #ccc;
@@ -34,15 +34,15 @@
         width: 100%;
         outline: none;
       }
-      
+
       input[type=text]:invalid, input[type=password]:invalid {
         border-color: red;
       }
-      
+
       input[type=text]:focus, input[type=password]:focus {
         border-color: #3079ed;
       }
-      
+
       button {
         font-size: 1.25em;
         border: 0;
@@ -51,66 +51,66 @@
         color: white;
         border-radius: 4px;
       }
-      
+
       button.primary {
         background-color: #3079ed;
       }
-      
+
       button.loading {
         opacity: 0.5;
         cursor: default;
       }
-      
+
       .sheet-id {
         color: gray;
         font-size: 0.8em;
       }
-      
+
       .action-buttons {
         display: flex;
         justify-content: flex-end;
       }
-      
+
     </style>
-    
+
   </head>
   <body>
-    
+
     <form onsubmit="handleSubmit(); return false">
       <ul>
         <li>
           <label for="bucket-name">Bucket name</label>
           <input id="bucket-name" name="bucketName" type="text" autofocus value="<?!= bucketName ?>" placeholder="my-bucket-name" required />
         </li>
-    
+
         <li>
           <label for="path">Path (without leading or trailing slashes)</label>
-          <input id="path" name="path" type="text" value="<?!= path ?>" placeholder="path/to/folder" required />
+          <input id="path" name="path" type="text" value="<?!= path ?>" placeholder="path/to/folder" />
         </li>
-        
+
         <li>
           <label for="aws-access-key-id">AWS access key ID</label>
           <input id="aws-access-key-id" name="awsAccessKeyId" type="text" value="<?!= awsAccessKeyId ?>" placeholder="from AWS management console" required />
         </li>
-        
+
         <li>
           <label for="aws-secret-key">AWS secret key</label>
           <input id="aws-secret-key" name="awsSecretKey" type="password" value="<?!= awsSecretKey ?>" placeholder="from AWS management console" required />
         </li>
-        
+
         <li class="sheet-id">
           Sheet ID: <?!= sheetId ?>
         </li>
       </ul>
-      
+
       <div class="action-buttons">
         <button type="submit" class="primary">Save</button>
       </div>
-      
+
     </form>
-    
+
     <script>
-    
+
       function handleSubmit() {
         var form = document.querySelector('form');
         var submitButton = document.querySelector('form button[type=submit]');
@@ -118,10 +118,8 @@
         submitButton.innerHTML = 'Saving...';
         google.script.run.updateConfig(form);
       }
-      
+
     </script>
-    
+
   </body>
 </html>
-
-
