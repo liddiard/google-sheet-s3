@@ -68,10 +68,10 @@ function showConfig() {
   var props = PropertiesService.getDocumentProperties().getProperties();
   var template = HtmlService.createTemplateFromFile('config');
   template.sheetId = sheet.getId();
-  template.bucketName = props.bucketName;
-  template.path = props.path;
-  template.awsAccessKeyId = props.awsAccessKeyId;
-  template.awsSecretKey = props.awsSecretKey;
+  template.bucketName = props.bucketName || '';
+  template.path = props.path || '';
+  template.awsAccessKeyId = props.awsAccessKeyId || '';
+  template.awsSecretKey = props.awsSecretKey || '';
   ui.showModalDialog(template.evaluate(), 'Amazon S3 publish configuration');
 }
 
