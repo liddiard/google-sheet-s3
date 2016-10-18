@@ -13,6 +13,10 @@ function publish(event) {
     return;
   }
 
+  // id of the current sheet tab ("grid")
+  // the default, initially created sheet has id 0
+  var gridId = event.range.getGridId();
+
   // do nothing if the edited sheet is not the first one
   var sheet = SpreadsheetApp.getActiveSpreadsheet();
   // sheets are indexed from 1 instead of 0
@@ -59,7 +63,9 @@ function publish(event) {
   // https://engetc.com/projects/amazon-s3-api-binding-for-google-apps-script/
   var props = PropertiesService.getDocumentProperties().getProperties();
   var s3 = S3.getInstance(props.awsAccessKeyId, props.awsSecretKey);
-  s3.putObject(props.bucketName, [props.path, sheet.getId()].join('/'), objs);
+  var path = [props.path, sheet.getId()];
+  if (gridId) path.push(gridId);
+  s3.putObject(props.bucketName, path.join('/'), objs);
 }
 
 // show the configuration modal dialog UI
