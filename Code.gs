@@ -6,7 +6,8 @@ function onOpen() {
 }
 
 // publish updated JSON to S3 if changes were made to the first sheet
-function publish() {
+// event object passed from installable trigger
+function publish(event) {
   // do nothing if required configuration settings are not present
   if (!hasRequiredProps()) {
     return;
