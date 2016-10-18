@@ -86,14 +86,14 @@ function updateConfig(form) {
   });
   var message;
   if (hasRequiredProps()) {
-    message = 'Published spreadsheet will be accessible at \nhttps://' + form.bucketName + '.s3.amazonaws.com/' + form.path + '/' + sheet.getId();
+    message = 'Published spreadsheet will be accessible at: \nhttps://' + form.bucketName + '.s3.amazonaws.com/' + form.path + '/' + sheet.getId();
     publish();
   }
   else {
     message = 'You will need to fill out all configuration options for your spreadsheet to be published to S3.';
   }
   var ui = SpreadsheetApp.getUi();
-  ui.alert('✓ Configuration Updated', message, ui.ButtonSet.OK);
+  ui.alert('✓ Configuration updated', message, ui.ButtonSet.OK);
 }
 
 // checks if document has the required configuration settings to publish to S3
