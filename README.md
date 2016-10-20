@@ -4,9 +4,9 @@
 
 ## Why?
 
-Use case: Displaying simple, structured, spreadsheet-like, publicly accessible data on a website (with possibly thousands of simultaneous visitors) that is easily updatable (possibly by multiple people at once) without the overhead and development time of writing, deploying, and maintaining a full-blown web application. 
+Use case: Displaying simple, structured, spreadsheet-like, publicly accessible data on a website (with possibly thousands of simultaneous visitors) that is easily updatable (possibly by multiple people at once) without the overhead and development time of writing, deploying, and maintaining a full-blown web application.
 
-Examples: staff directory list, restaurant menu items listing, sports team standings page, live blog. 
+Examples: staff directory list, restaurant menu items listing, sports team standings page, live blog.
 
 ## Why not [alternative]?
 
@@ -15,13 +15,15 @@ Examples: staff directory list, restaurant menu items listing, sports team stand
 - Doesn't require an intermediary web application like [WSJ uses (used?)](https://gist.github.com/jsvine/3295633).
 - Not an alternative service like [Airtable](https://airtable.com) or [Fieldbook](https://fieldbook.com) that is cool but costs 💰💰💰.
 - Not slow at returning data like [Google Apps Script Web Apps](http://pipetree.com/qmacro/blog/2013/10/sheetasjson-google-spreadsheet-data-as-json/
-) seem to be. (If you're okay with 2000ms response times, this solution is easier because it doesn't involve S3. S3 response times tend to be 10-20x faster.) 
+) seem to be. (If you're okay with 2000ms response times, this solution is easier because it doesn't involve S3. S3 response times tend to be 10-20x faster.)
 
 ## Setup
 
 ### Prerequisites
 
-- An Amazon S3 bucket for which you have [created security credentials](https://console.aws.amazon.com/iam/home?nc2=h_m_sc#users) that have read and write permissions on the bucket.
+- An Amazon S3 bucket for which you have:
+    - [Created security credentials](https://console.aws.amazon.com/iam/home?nc2=h_m_sc#users) that have write permissions to the bucket.
+    - Added a CORS policy that allows GET requests from whatever origin (domain name) you want to access the data. The default policy works fine to allow access from any origin. To enable, go to your S3 Management Console, right-click your bucket name, click Properties > Permissions > Add CORS Configuration > Save (modal dialog) > Save (again) (blue button in sidebar)
 
 ### Instructions
 
@@ -30,7 +32,7 @@ Examples: staff directory list, restaurant menu items listing, sports team stand
 3. Enable the add-on for this sheet.
 4. In the newly appeared "Publish to S3" menu, click "Configure..."
 5. Fill in the S3 bucket name, path within the bucket (leave blank if none), and AWS credentials that allow write access to the bucket.
-6. Click "Save". The S3 URL of your JSON-ified spreadsheet will be shown. 
+6. Click "Save". The S3 URL of your JSON-ified spreadsheet will be shown.
 
 That's it! Any time you make a change to the spreadsheet, the changes will be re-published to the JSON file. The JSON file's filename is taken from the spreadsheet ID, so the spreadsheet can be renamed without breaking anything.
 
