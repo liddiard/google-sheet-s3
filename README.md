@@ -36,7 +36,7 @@ Examples: staff directory list, restaurant menu items listing, sports team stand
 5. Fill in the S3 bucket name, path within the bucket (leave blank if none), and AWS credentials that allow write access to the bucket.
 6. Click "Save". The S3 URL of your JSON-ified spreadsheet will be shown.
 
-That's it! Any time you make a change to the spreadsheet, the changes will be re-published to the JSON file. The JSON file's filename is taken from the spreadsheet ID, so the spreadsheet can be renamed without breaking anything.
+That's it! Any time you make a change to the spreadsheet, the changes will be re-published to the JSON file. The JSON file's filename is taken from the spreadsheet ID, so the spreadsheet can be renamed without breaking the URL.
 
 ## Usage notes
 
