@@ -2,6 +2,8 @@
 
 [Google Apps Script](https://developers.google.com/apps-script/) to upload a Google Sheet to an Amazon S3 bucket as JSON with objects keyed by header name. Auto-republish on edit. Correctly maintain number and boolean data types.
 
+Get the add-on [here on the Chrome Web Store](https://chrome.google.com/webstore/detail/publish-sheet-to-s3/dnadifnnmjfmcedgifdienlmloeiongn).
+
 ## Why?
 
 Use case: Displaying simple, structured, spreadsheet-like, publicly accessible data on a website (with possibly thousands of simultaneous visitors) that is easily updatable (possibly by multiple people at once) without the overhead and development time of writing, deploying, and maintaining a full-blown web application.
@@ -29,12 +31,12 @@ Examples: staff directory list, restaurant menu items listing, sports team stand
 
 1. Create or open an existing Google Sheet.
 2. Format the sheet so that the first row contains the column headers you want your JSON objects to have as properties. Example: ![Example](http://i.imgur.com/kTd3noR.png)
-3. Enable the add-on for this sheet.
+3. Install and enable [the add-on](https://chrome.google.com/webstore/detail/publish-sheet-to-s3/dnadifnnmjfmcedgifdienlmloeiongn).
 4. In the newly appeared "Publish to S3" menu, click "Configure..."
 5. Fill in the S3 bucket name, path within the bucket (leave blank if none), and AWS credentials that allow write access to the bucket.
 6. Click "Save". The S3 URL of your JSON-ified spreadsheet will be shown.
 
-That's it! Any time you make a change to the spreadsheet, the changes will be re-published to the JSON file. The JSON file's filename is taken from the spreadsheet ID, so the spreadsheet can be renamed without breaking anything.
+That's it! Any time you make a change to the spreadsheet, the changes will be re-published to the JSON file. The JSON file's filename is taken from the spreadsheet ID, so the spreadsheet can be renamed without breaking the URL.
 
 ## Usage notes
 
