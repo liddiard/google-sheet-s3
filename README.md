@@ -8,7 +8,7 @@ Get the add-on [here on the Chrome Web Store](https://chrome.google.com/webstore
 
 Use case: Displaying simple, structured, spreadsheet-like, publicly accessible data on a website (with possibly thousands of simultaneous visitors) that is easily updatable (possibly by multiple people at once) without the overhead and development time of writing, deploying, and maintaining a full-blown web application.
 
-Examples: staff directory list, restaurant menu items listing, sports team standings page, live blog.
+Examples: staff directory list, restaurant menu items listing, sports team standings page, [live blog](https://github.com/liddiard/react-live-blog/).
 
 ## Why not [alternative]?
 
