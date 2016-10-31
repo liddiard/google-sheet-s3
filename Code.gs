@@ -46,11 +46,12 @@ function publish(event) {
   .map(function(row){
     var obj = {};
     row.forEach(function(value, index){
-      // omit keys for cells whose values are empty strings
-      if (typeof value !== 'string' || value.length) {
-        var prop = rows[0][index];
-        obj[prop] = value;
-      }
+      var prop = rows[0][index];
+      // represent blank cell values as `null`
+      // blank cells always appear as an empty string regardless of the data
+      // type of other values in the column. neutralizing everything to `null`
+      // lets us avoid mixing empty strings with other data types for a prop.
+      obj[prop] = (typeof value === 'string' && !value.length) ? null : value;
     });
     return obj;
   });

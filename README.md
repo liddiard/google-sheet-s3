@@ -43,7 +43,7 @@ That's it! Any time you make a change to the spreadsheet, the changes will be re
 - The add-on only looks at the sequentially first sheet tab (called "Sheet1" by default). It won't publish or respond to changes on other tabs.
 - The add-on will ignore columns that don't have a value in the header (row 1) of the spreadsheet.
 - The add-on will ignore empty rows, skipping over them to the next row with values.
-- A missing value in a row is represented in the JSON as the absence of the corresponding key for that object. So, if you have a column that could have missing or optional values, be sure to check for the presence/absence of that property in any code that works with the JSON. (e.g. use `.hasOwnProperty(columnHeaderName)` in JavaScript)
+- A blank cell in a row is represented in the JSON as `null`. So if you have a column that could have missing or optional values, be sure to handle the `null` value in your consuming code.
 
 ## Development installation instructions
 
