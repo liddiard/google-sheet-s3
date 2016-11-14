@@ -53,3 +53,10 @@ That's it! Any time you make a change to the spreadsheet, the changes will be re
 4. Add a new trigger with Run: "publish", Events: "From spreadsheet", "On edit".
 5. In the menu bar, click Publish > Test as add-on...
 6. Select a version, for "Installation Config", choose "Installed and enabled", and select a document (must be a spreadsheet). Save.
+
+### Developement links for version published to Chrome Web Store
+
+These links are not publicly accessible.
+
+- [Sheet](https://docs.google.com/spreadsheets/d/19loh8WQudFyClZORX_nNzDvI4iVewVy9v70zdog83Uc/edit#gid=0)
+- [Apps Script](https://script.google.com/macros/d/MIjU_ktgghpXlevjc5UKzGX33-3kBXtAK/edit?uiv=2&mid=ACjPJvGUsuxrK89WuB25at1Q6PF5qzf82zlLc8iciAjnZ97ozdHkwB-uJrS6tcVQDGi9Ydwk2LipQn5ut_8zT_iLLcYDq8aDnysmrjWpMo8PSk42JGUu0jLxp6TkSxMn8HGyQIAruhbBQw)
