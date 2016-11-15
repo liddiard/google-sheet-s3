@@ -32,7 +32,7 @@ Examples: staff directory list, restaurant menu items listing, sports team stand
 1. Create or open an existing Google Sheet.
 2. Format the sheet so that the first row contains the column headers you want your JSON objects to have as properties. Example: ![Example](http://i.imgur.com/kTd3noR.png)
 3. Install and enable [the add-on](https://chrome.google.com/webstore/detail/publish-sheet-to-s3/dnadifnnmjfmcedgifdienlmloeiongn).
-4. In the menu, go to "Add-ons" > "Publish to S3" > "Configure..."
+4. In the spreadsheet's menu, go to Add-ons > Publish to S3 > Configure...
 5. Fill in the S3 bucket name, path within the bucket (leave blank if none), and AWS credentials that allow write access to the bucket.
 6. Click "Save". The S3 URL of your JSON-ified spreadsheet will be shown.
 
