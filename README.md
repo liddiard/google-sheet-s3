@@ -1,4 +1,4 @@
-# google-sheet-s3
+# ![logo](https://github.com/liddiard/google-sheet-s3/blob/master/img/icon.png?raw=true) google-sheet-s3
 
 [Google Apps Script](https://developers.google.com/apps-script/) to publish a Google Sheet to Amazon S3 as a JSON file. Auto-updates on edit & maintains data types. Objects keyed by column header.
 
