@@ -18,8 +18,8 @@ Staff directory list, restaurant menu items listing, sports team standings page,
 
 - Doesn't require OAuth like the [official Google Sheets API](https://developers.google.com/sheets/guides/authorizing) (no good for anonymous data viewing).
 - Not using [deprecated APIs](https://developers.google.com/gdata/samples/spreadsheet_sample) like [Tabletop.js](https://github.com/jsoma/tabletop) that could suffer an untimely disappearance at the whims of Google.
-- Doesn't require an intermediary web application like [WSJ uses (used?)](https://gist.github.com/jsvine/3295633).
-- Not an alternative service like [Airtable](https://airtable.com) or [Fieldbook](https://fieldbook.com) that is cool but costs 💰💰💰.
+- Doesn't require an intermediary web application like [WSJ uses/used](https://gist.github.com/jsvine/3295633).
+- Not an alternative service like [Airtable](https://airtable.com) or [Fieldbook](https://fieldbook.com) that is powerful but costs 💰💰💰.
 - Not slow at returning data like [Google Apps Script Web Apps](http://pipetree.com/qmacro/blog/2013/10/sheetasjson-google-spreadsheet-data-as-json/
 ) seem to be. (If you're okay with 2000ms response times, this solution is easier because it doesn't involve S3. S3 response times tend to be 10-20x faster.)
 
