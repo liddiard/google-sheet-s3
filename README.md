@@ -2,9 +2,11 @@
 
 [Google Apps Script](https://developers.google.com/apps-script/) to publish a Google Sheet to Amazon S3 as a JSON file. Auto-updates on edit & maintains data types. Objects keyed by column header.
 
-Turn a spreadsheet like this: ![spreadsheet](http://i.imgur.com/9k7tY91.png)
+Turn a spreadsheet like this: 
+![spreadsheet](http://i.imgur.com/9k7tY91.png)
 
-Into an auto-updating JSON file like this: ![JSON object](http://i.imgur.com/FahoMx4.png)
+Into an auto-updating JSON file like this: 
+![JSON object](http://i.imgur.com/FahoMx4.png)
 
 Get the add-on [here on the Chrome Web Store](https://chrome.google.com/webstore/detail/publish-sheet-to-s3/dnadifnnmjfmcedgifdienlmloeiongn).
 
