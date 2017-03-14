@@ -56,7 +56,7 @@ That's it! Any time you make a change to the spreadsheet, the changes will be re
 1. Create a new Google Apps Script with files whose names and content matches the ones in this repo (minus this readme).
 2. Add the [Amazon S3 API Binding](https://engetc.com/projects/amazon-s3-api-binding-for-google-apps-script/).
 3. In the Apps Script editor toolbar, click "Current project's triggers" (weird icon that looks like a clock in a speech bubble).
-4. Add a new trigger with Run: "publish", Events: "From spreadsheet", "On edit".
+4. Add a new trigger with Run: "publish", Events: "From spreadsheet", "On change".
 5. In the menu bar, click Publish > Test as add-on...
 6. Select a version, for "Installation Config", choose "Installed and enabled", and select a document (must be a spreadsheet). Save.
 
