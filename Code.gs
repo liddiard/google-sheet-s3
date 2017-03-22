@@ -7,15 +7,6 @@ function createMenu() {
 
 function onInstall() { 
   createMenu();
-  // Create an onChange trigger programatically instead of manually because 
-  // manual triggers disappear for no reason. See:
-  // https://code.google.com/p/google-apps-script-issues/issues/detail?id=4854
-  // https://code.google.com/p/google-apps-script-issues/issues/detail?id=5831
-  var sheet = SpreadsheetApp.getActive();
-  ScriptApp.newTrigger("publish")
-           .forSpreadsheet(sheet)
-           .onChange()
-           .create();
 }
 
 function onOpen() { 
@@ -107,6 +98,15 @@ function updateConfig(form) {
   if (hasRequiredProps()) {
     message = 'Published spreadsheet will be accessible at: \nhttps://' + form.bucketName + '.s3.amazonaws.com/' + form.path + '/' + sheet.getId();
     publish();
+    // Create an onChange trigger programatically instead of manually because 
+    // manual triggers disappear for no reason. See:
+    // https://code.google.com/p/google-apps-script-issues/issues/detail?id=4854
+    // https://code.google.com/p/google-apps-script-issues/issues/detail?id=5831
+    var sheet = SpreadsheetApp.getActive();
+    ScriptApp.newTrigger("publish")
+             .forSpreadsheet(sheet)
+             .onChange()
+             .create();
   }
   else {
     message = 'You will need to fill out all configuration options for your spreadsheet to be published to S3.';
