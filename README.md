@@ -42,7 +42,7 @@ Staff directory list, restaurant menu items listing, sports team standings page,
     
 #### Bucket policy for public read-only access
     
-```
+```json
 {
 	"Version": "2012-10-17",
 	"Statement": [
