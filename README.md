@@ -37,8 +37,8 @@ Staff directory list, restaurant menu items listing, sports team standings page,
 
 - An Amazon S3 bucket for which you have:
     - [Created security credentials](https://console.aws.amazon.com/iam/home?nc2=h_m_sc#users) that have write permissions to the bucket.
-    - Added a CORS policy that allows GET requests from whatever origin (domain name) you want to access the data. The default policy works fine to allow access from any origin. To enable, go to your S3 Management Console, right-click your bucket name, click Properties > Permissions > Add CORS Configuration > Save (modal dialog) > Save (again) (blue button in sidebar)
-    - Added a bucket policy that allows people to GET the published JSON. To enable, go to your S3 Management Console, right-click your bucket name, click Properties > Permissions > Add bucket policy > [Paste the text below to allow everyone public view access] > Save (modal dialog) > Save (again) (blue button in sidebar)
+    - Added a CORS policy that allows GET requests from whatever origin (domain name) you want to access the data from. The default policy allows access from any origin. To enable, go to your S3 Management Console, right-click your bucket name, click Properties > Permissions > Add CORS Configuration > Save (modal dialog) > Save (again) (blue button in sidebar)
+    - Added a bucket policy that enables public viewing of the published JSON. To enable, go to your S3 Management Console, right-click your bucket name, click Properties > Permissions > Add bucket policy > [Paste the text below to allow everyone public view access] > Save (modal dialog) > Save (again) (blue button in sidebar)
     
 #### Bucket policy for public read-only access
     
