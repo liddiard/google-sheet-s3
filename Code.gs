@@ -119,6 +119,5 @@ function updateConfig(form) {
 // does not check if the config is valid
 function hasRequiredProps() {
   var props = PropertiesService.getDocumentProperties().getProperties();
-  return (props.bucketName && props.bucketName.length && props.awsAccessKeyId &&
-          props.awsAccessKeyId.length && props.awsSecretKey && props.awsSecretKey.length);
+  return props.bucketName && props.awsAccessKeyId && props.awsSecretKey;
 }
