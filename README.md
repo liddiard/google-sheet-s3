@@ -51,7 +51,7 @@ Staff directory list, restaurant menu items listing, sports team standings page,
 			"Effect": "Allow",
 			"Principal": "*",
 			"Action": "s3:GetObject",
-			"Resource": "arn:aws:s3:::ucla-athletics/*"
+			"Resource": "arn:aws:s3:::PUT-YOUR-BUCKET-NAME-HERE/*"
 		}
 	]
 }
