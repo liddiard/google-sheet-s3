@@ -86,9 +86,7 @@ That's it! Any time you make a change to the spreadsheet, the changes will be re
 
 ### Developement links for version published to Chrome Web Store
 
-These links are not publicly accessible – please do not request access. They're for my reference only to develop the script. 
-
-If you'd like to develop on this script yourself, follow the instructions above to set up a development environment.
+These links are not publicly accessible – please do not request access. They're only for my personal reference to develop the script. If you'd like to develop on this script yourself, follow the instructions above to set up a development environment.
 
 - [Sheet](https://docs.google.com/spreadsheets/d/19loh8WQudFyClZORX_nNzDvI4iVewVy9v70zdog83Uc/edit#gid=0)
 - [Apps Script](https://script.google.com/macros/d/MIjU_ktgghpXlevjc5UKzGX33-3kBXtAK/edit?uiv=2&mid=ACjPJvGUsuxrK89WuB25at1Q6PF5qzf82zlLc8iciAjnZ97ozdHkwB-uJrS6tcVQDGi9Ydwk2LipQn5ut_8zT_iLLcYDq8aDnysmrjWpMo8PSk42JGUu0jLxp6TkSxMn8HGyQIAruhbBQw)
