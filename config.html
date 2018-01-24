@@ -103,6 +103,18 @@
           <input id="aws-secret-key" name="awsSecretKey" type="password" value="<?!= awsSecretKey ?>" placeholder="from AWS management console" required />
         </li>
 
+        <li>
+          <label for="aws-secret-key">File format</label>
+            <ul>
+              <li>
+                <input id="file_format" name="file_format" type="radio" value="csv"> CSV 
+              </li>
+              <li>
+                <input id="file_format" name="file_format" type="radio" value="json"> JSON
+              </li>
+            </ul>
+        </li>
+
         <li class="sheet-id">
           Sheet ID: <?!= sheetId ?>
         </li>

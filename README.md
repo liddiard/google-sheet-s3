@@ -1,4 +1,5 @@
-** Currently working on adding CSV export in addition to JSON. WORK IN PROGRESS **
+** Added ability to publish as a CSV.**
+In the "Configure" window there is now a choice between publishing as a CSV or JSON. Selecting CSV will sync and publish a CSV instead of a JSON file. 
 
 # <img src="https://github.com/liddiard/google-sheet-s3/blob/master/img/icon.png?raw=true" alt="logo" width="64px" /> google-sheet-s3
 
