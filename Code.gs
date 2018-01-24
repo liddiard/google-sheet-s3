@@ -15,7 +15,9 @@ function onOpen() {
 
 // publish updated JSON to S3 if changes were made to the first sheet
 // event object passed if called from trigger
-function publish(event) {
+// BE: Optional parameter file_type can be passed to export as csv instead.
+function publish(event, file_type) {
+  file_type = file_type || "json";
   // do nothing if required configuration settings are not present
   if (!hasRequiredProps()) {
     return;
@@ -67,8 +69,10 @@ function publish(event) {
   // upload to S3
   // https://engetc.com/projects/amazon-s3-api-binding-for-google-apps-script/
   var props = PropertiesService.getDocumentProperties().getProperties();
-  var s3 = S3.getInstance(props.awsAccessKeyId, props.awsSecretKey);
-  s3.putObject(props.bucketName, [props.path, sheet.getId()].join('/'), objs);
+ //  var s3 = S3.getInstance(props.awsAccessKeyId, props.awsSecretKey); // S3 class doesn't have a getInstance(), that's on the S3.gs code file.
+  var s3 = getInstance(props.awsAccessKeyId, props.awsSecretKey);
+
+  s3.putObject(props.bucketName, [props.path, sheet.getId() + "." + file_type].join('/'), rows;
 }
 
 // show the configuration modal dialog UI
