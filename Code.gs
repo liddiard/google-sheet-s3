@@ -55,7 +55,7 @@ function publish(event, file_type) {
     var csv = "";
       // var rs = sheet.getDataRange().getValues();
       rows.forEach(function(e) {
-        csv += e.join(",") + "\n";
+        csv += e.map(function(x) { return ("\"" + x + "\"")}).join(",") + "\n";
       });
       var objs = Utilities.newBlob(csv);
   } else if (file_type == "json") {
