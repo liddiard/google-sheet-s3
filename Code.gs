@@ -15,7 +15,10 @@ function onOpen() {
 
 // publish updated JSON to S3 if changes were made to the first sheet
 // event object passed if called from trigger
-function publish(event) {
+// BE: Optional parameter file_type can be passed to export as csv instead.
+function publish(event, file_type) {
+  file_type = file_type || PropertiesService.getDocumentProperties().getProperties().file_format;
+  file_type = file_type || "json";
   // do nothing if required configuration settings are not present
   if (!hasRequiredProps()) {
     return;
@@ -48,27 +51,39 @@ function publish(event) {
     });
   });
 
-  // create an array of objects keyed by header
-  var objs = rows
-  .slice(1)
-  .map(function(row){
-    var obj = {};
-    row.forEach(function(value, index){
-      var prop = rows[0][index];
-      // represent blank cell values as `null`
-      // blank cells always appear as an empty string regardless of the data
-      // type of other values in the column. neutralizing everything to `null`
-      // lets us avoid mixing empty strings with other data types for a prop.
-      obj[prop] = (typeof value === 'string' && !value.length) ? null : value;
-    });
-    return obj;
-  });
+  if (file_type == "csv") {
+    var csv = "";
+      // var rs = sheet.getDataRange().getValues();
+      rows.forEach(function(e) {
+        csv += e.map(function(x) { return ("\"" + x + "\"")}).join(",") + "\n";
+      });
+      var objs = Utilities.newBlob(csv);
+  } else if (file_type == "json") {
+    // create an array of objects keyed by header
+    var objs = rows
+    .slice(1)
+    .map(function(row){
+      var obj = {};
+      row.forEach(function(value, index){
+        var prop = rows[0][index];
+        // represent blank cell values as `null`
+        // blank cells always appear as an empty string regardless of the data
+        // type of other values in the column. neutralizing everything to `null`
+        // lets us avoid mixing empty strings with other data types for a prop.
+        obj[prop] = (typeof value === 'string' && !value.length) ? null : value;
+      });
+      return obj;
+    });    
+  }
 
+  
   // upload to S3
   // https://engetc.com/projects/amazon-s3-api-binding-for-google-apps-script/
   var props = PropertiesService.getDocumentProperties().getProperties();
-  var s3 = S3.getInstance(props.awsAccessKeyId, props.awsSecretKey);
-  s3.putObject(props.bucketName, [props.path, sheet.getId()].join('/'), objs);
+ //  var s3 = S3.getInstance(props.awsAccessKeyId, props.awsSecretKey); // S3 class doesn't have a getInstance(), that's on the S3.gs code file.
+  var s3 = getInstance(props.awsAccessKeyId, props.awsSecretKey);
+
+  s3.putObject(props.bucketName, [props.path, sheet.getId() + "." + file_type].join('/'), objs);
 }
 
 // show the configuration modal dialog UI
@@ -92,11 +107,12 @@ function updateConfig(form) {
     bucketName: form.bucketName,
     path: form.path,
     awsAccessKeyId: form.awsAccessKeyId,
-    awsSecretKey: form.awsSecretKey
+    awsSecretKey: form.awsSecretKey,
+    file_format: form.file_format
   });
   var message;
   if (hasRequiredProps()) {
-    message = 'Published spreadsheet will be accessible at: \nhttps://' + form.bucketName + '.s3.amazonaws.com/' + form.path + '/' + sheet.getId();
+    message = 'Published spreadsheet will be accessible at: \nhttps://' + form.bucketName + '.s3.amazonaws.com/' + form.path + '/' + sheet.getId() + "." + form.file_format.toLowerCase();
     publish();
     // Create an onChange trigger programatically instead of manually because 
     // manual triggers disappear for no reason. See:
@@ -119,5 +135,5 @@ function updateConfig(form) {
 // does not check if the config is valid
 function hasRequiredProps() {
   var props = PropertiesService.getDocumentProperties().getProperties();
-  return props.bucketName && props.awsAccessKeyId && props.awsSecretKey;
+  return props.bucketName && props.awsAccessKeyId && props.awsSecretKey && props.file_format;
 }
