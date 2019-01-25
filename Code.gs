@@ -45,7 +45,7 @@ function publish(event) {
   });
 
   // create an array of objects keyed by header
-  var objs = rows
+  var data = rows
   .slice(1)
   .map(function(row){
     var obj = {};
@@ -64,7 +64,14 @@ function publish(event) {
   // https://engetc.com/projects/amazon-s3-api-binding-for-google-apps-script/
   var props = PropertiesService.getDocumentProperties().getProperties();
   var s3 = S3.getInstance(props.awsAccessKeyId, props.awsSecretKey);
-  s3.putObject(props.bucketName, [props.path, sheet.getId()].join('/'), objs);
+
+  var activeIndex = sheet.getActiveSheet().getIndex()
+  var name = sheet.getName().toLowerCase().replace(/\s/g, '_');
+  var tabName = sheet.getSheets()[activeIndex - 1].getName().toLowerCase().replace(/\s/g, '_');
+
+  var path = [name, tabName].join('-');
+
+  s3.putObject(props.bucketName, path, JSON.stringify({ data: data }));
 }
 
 // show the configuration modal dialog UI
