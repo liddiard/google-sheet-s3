@@ -5,11 +5,11 @@ function createMenu() {
   .addToUi();
 }
 
-function onInstall() { 
+function onInstall() {
   createMenu();
 }
 
-function onOpen() { 
+function onOpen() {
   createMenu();
 }
 
@@ -23,10 +23,6 @@ function publish(event) {
 
   // do nothing if the edited sheet is not the first one
   var sheet = SpreadsheetApp.getActiveSpreadsheet();
-  // sheets are indexed from 1 instead of 0
-  if (sheet.getActiveSheet().getIndex() > 1) {
-    return;
-  }
 
   // get cell values from the range that contains data (2D array)
   var rows = sheet
@@ -98,7 +94,7 @@ function updateConfig(form) {
   if (hasRequiredProps()) {
     message = 'Published spreadsheet will be accessible at: \nhttps://' + form.bucketName + '.s3.amazonaws.com/' + form.path + '/' + sheet.getId();
     publish();
-    // Create an onChange trigger programatically instead of manually because 
+    // Create an onChange trigger programatically instead of manually because
     // manual triggers disappear for no reason. See:
     // https://code.google.com/p/google-apps-script-issues/issues/detail?id=4854
     // https://code.google.com/p/google-apps-script-issues/issues/detail?id=5831
