@@ -4,7 +4,7 @@ This repo contains a Google Apps Script for publishing event data to Amazon S3. 
 
 ## Setup an event file
 
-* (1) **Copy** [this template](https://docs.google.com/spreadsheets/d/1qQBXGPUiyxudkEmuQeX963oMXRrGqdHAh0moQFl_haE/edit?usp=sharing) and rename it.
+**(1)** Copy [this template](https://docs.google.com/spreadsheets/d/1qQBXGPUiyxudkEmuQeX963oMXRrGqdHAh0moQFl_haE/edit?usp=sharing) and rename it.
 
 __CSV Backup__
 
@@ -20,13 +20,13 @@ RSVP Button,RSVP,RSVP,rsvpButtonCopy
 Mile Marker Label,Miles,Millas,mileMarkerLabel
 ```
 
-* (2) Create a script in your new events sheet (Tools -> Script Editor). Paste the contents of `Code.gs` in this repo into the script editor. Within the script editor, create a new html file (File -> New -> HTML File) called `config.html` and copy the contents of the `config.html` in this repo.
+**(2)** Create a script in your new events sheet (Tools -> Script Editor). Paste the contents of `Code.gs` in this repo into the script editor. Within the script editor, create a new html file (File -> New -> HTML File) called `config.html` and copy the contents of the `config.html` in this repo.
 
-* (3) Save the script (cmd + s) and run it. Do this by going to the `select function` dropdown menu at the top and choosing the `createMenu` option. Then hit the run button to the left of the dropdown (It looks like a triangular "play" icon).
+**(3)** Save the script (cmd + s) and run it. Do this by going to the `select function` dropdown menu at the top and choosing the `createMenu` option. Then hit the run button to the left of the dropdown (It looks like a triangular "play" icon).
 
-* (4) Go back to your sheet, and you should see a new tab at the end called "Publish to S3". Select that and the menu 'configure' option. This will bring up a menu to configure S3 access. If you've already made the required AWS & S3 resources, skip to step 6.
+**(4)** Go back to your sheet, and you should see a new tab at the end called "Publish to S3". Select that and the menu 'configure' option. This will bring up a menu to configure S3 access. If you've already made the required AWS & S3 resources, skip to step 6.
 
-* (5) In the AWS console, create a new bucket and user specifically for this script.
+**(5)** In the AWS console, create a new bucket and user specifically for this script.
 
 To create the bucket, go to the S3 homepage and hit 'Create Bucket'. Make sure all of the policies restrict public access.
 
@@ -53,7 +53,7 @@ Replace `ew-events` with the name of your bucket.
 
 Then add a new user with this policy attached, and set the 'AWS Access Type' to be 'Programmatic access'. Copy the access key & secret at the end of the user create flow.
 
-6. Fill out the AWS properties in your event sheet within the configure menu we previously opened.
+**6**. Fill out the AWS properties in your event sheet within the configure menu we previously opened.
 
 ```
 Bucket name: ${REPLACE_WITH_YOUR_BUCKET_NAME}
