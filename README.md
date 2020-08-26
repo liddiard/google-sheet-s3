@@ -51,16 +51,16 @@ Replace the text "PUT-YOUR-BUCKET-NAME-HERE" with your bucket's name.
     
 ```json
 {
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Sid": "AddPerm",
-			"Effect": "Allow",
-			"Principal": "*",
-			"Action": "s3:GetObject",
-			"Resource": "arn:aws:s3:::PUT-YOUR-BUCKET-NAME-HERE/*"
-		}
-	]
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AddPerm",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::PUT-YOUR-BUCKET-NAME-HERE/*"
+        }
+    ]
 }
 ```
     
