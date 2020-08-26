@@ -4,7 +4,7 @@ const createMenu = () => {
   .createMenu('Publish to S3')
   .addItem('Configure...', 'showConfig')
   .addToUi();
-}
+};
 const onInstall = createMenu;
 const onOpen = createMenu;
   
@@ -17,7 +17,7 @@ const hasRequiredProps = () => {
           awsAccessKeyId && awsAccessKeyId.length &&
           awsSecretKey && awsSecretKey.length
   );
-}
+};
 
 // publish updated JSON to S3 if changes were made to the first sheet
 const publish = () => {
@@ -64,7 +64,7 @@ const publish = () => {
   const props = PropertiesService.getDocumentProperties().getProperties();
   const s3 = S3.getInstance(props.awsAccessKeyId, props.awsSecretKey);
   s3.putObject(props.bucketName, [props.path, sheet.getId()].join('/'), cells);
-}
+};
 
 // show the configuration modal dialog UI
 const showConfig = () => {
@@ -75,8 +75,8 @@ const showConfig = () => {
   // default to empty strings, otherwise the string "undefined" will be shown
   // for the value
   const templateProps = Object.entries(props)
-  .reduce((acc, [key, val]) => Object.assign(acc, { [key]: val || '' }), {})
-  Object.assign(template, templateProps)
+  .reduce((acc, [key, val]) => Object.assign(acc, { [key]: val || '' }), {});
+  Object.assign(template, templateProps);
   SpreadsheetApp.getUi()
   .showModalDialog(template.evaluate(), 'Amazon S3 publish configuration');
 }
@@ -95,11 +95,11 @@ const updateConfig = form => {
     try {
       publish();
       title = '✓ Configuration updated';
-      message = `Published spreadsheet will be accessible at: \nhttps://${form.bucketName}.s3.amazonaws.com/${form.path}/${sheet.getId()}`;
+      message = `Published spreadsheet will be accessible at:\nhttps://${form.bucketName}.s3.amazonaws.com/${form.path}/${sheet.getId()}`;
     }
     catch (ex) {
-      title = '⚠ Error publishing to S3'
-      message = `Sorry, there was an error publishing your spreadsheet:\n${ex}`
+      title = '⚠ Error publishing to S3';
+      message = `Sorry, there was an error publishing your spreadsheet:\n${ex}`;
     }
     // If the publish trigger doesn't already exist, create it programatically instead
     // of manually because manual triggers disappear for no reason. See:
