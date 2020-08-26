@@ -43,7 +43,7 @@ We need to get an Amazon Web Services (AWS) S3 bucket and your Google Sheet to t
 4. Add a **bucket policy** that enables public viewing of the published JSON. To enable, go to your [S3 Management Console](https://s3.console.aws.amazon.com/s3/), click your bucket's name > Permissions tab > Bucket policy > enter your policy (sample to paste below) > click Save.
 5. If you're going to be accessing the published JSON data from a web browser, you will also need to add a **CORS policy** to your S3 bucket that allows GET requests from whatever origin (domain name) you want to access your data from. To add a policy, go to your [S3 Management Console](https://s3.console.aws.amazon.com/s3/), click your bucket's name > Permissions tab > CORS configuration > enter your policy (sample to paste below) > click Save.
 
-#### Sample bucket policy for public read-only access
+#### Sample bucket policy
 
 This configuration is what I imagine most people using this add-on will want. It allows **public** access of the data stored in your Google Sheet, but **not** public write access.
 
