@@ -2,7 +2,7 @@
 
 A [Google Apps Script](https://developers.google.com/apps-script/) that publishes a Google Sheet to Amazon S3 as a JSON file. Auto-updates on edit & maintains data types. Creates an array of objects keyed by column header.
 
-Turn a spreadsheet like this: 
+For example, it turns a spreadsheet like this: 
 
 ![spreadsheet](http://i.imgur.com/9k7tY91.png)
 
