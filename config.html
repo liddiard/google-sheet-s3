@@ -65,6 +65,11 @@
         opacity: 0.5;
         cursor: default;
       }
+      
+      .desc {
+        color: gray;
+        font-size: 0.9em;
+      }
 
       .sheet-id {
         color: gray;
@@ -82,25 +87,30 @@
   <body>
 
     <form onsubmit="handleSubmit(); return false">
+      <p><strong>Note:</strong> You must already have an S3 bucket configured before filling out the fields below to enable publishing. See the <a href="https://github.com/liddiard/google-sheet-s3/blob/master/README.md#aws-setup" target="_blank">AWS setup instructions</a> for instructions on how to do that.</p>
+      <p>See the <a href="https://github.com/liddiard/google-sheet-s3/blob/master/README.md#google-sheet-setup" target="_blank">Google Sheet setup instructions</a> for information on how to format your spreadsheet for publishing.</p>
       <ul>
         <li>
-          <label for="bucket-name">Bucket name</label>
+          <label for="bucket-name">S3 bucket name</label>
           <input id="bucket-name" name="bucketName" type="text" autofocus value="<?!= bucketName ?>" placeholder="my-bucket-name" required />
         </li>
 
         <li>
-          <label for="path">Path (without leading or trailing slashes)</label>
+          <label for="path">Path</label>
           <input id="path" name="path" type="text" value="<?!= path ?>" placeholder="path/to/folder" />
+          <span class="desc">Folder path within the bucket where the spreadsheet JSON file will be saved, <strong>without leading or trailing slashes</strong>. Leave blank for the top level.</span>
         </li>
 
         <li>
           <label for="aws-access-key-id">AWS access key ID</label>
-          <input id="aws-access-key-id" name="awsAccessKeyId" type="text" value="<?!= awsAccessKeyId ?>" placeholder="from AWS management console" required />
+          <input id="aws-access-key-id" name="awsAccessKeyId" type="text" value="<?!= awsAccessKeyId ?>" required />
+          <span class="desc">Get this value from the <a href="https://console.aws.amazon.com/iam/" target="_blank">IAM Console</a>.</span>
         </li>
 
         <li>
           <label for="aws-secret-key">AWS secret key</label>
-          <input id="aws-secret-key" name="awsSecretKey" type="password" value="<?!= awsSecretKey ?>" placeholder="from AWS management console" required />
+          <input id="aws-secret-key" name="awsSecretKey" type="password" value="<?!= awsSecretKey ?>" required />
+          <span class="desc">Get this value from the <a href="https://console.aws.amazon.com/iam/" target="_blank">IAM Console</a>.</span>
         </li>
 
         <li class="sheet-id">
@@ -117,8 +127,8 @@
     <script>
 
       function handleSubmit() {
-        var form = document.querySelector('form');
-        var submitButton = document.querySelector('form button[type=submit]');
+        const form = document.querySelector('form');
+        const submitButton = document.querySelector('form button[type=submit]');
         submitButton.classList.add('loading');
         submitButton.innerHTML = 'Saving...';
         google.script.run.updateConfig(form);
