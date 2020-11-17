@@ -4,7 +4,7 @@ This repo contains a Google Apps Script for publishing event data to Amazon S3. 
 
 ## Setup an event file
 
-**(1)** Copy [this template](https://docs.google.com/spreadsheets/d/1qQBXGPUiyxudkEmuQeX963oMXRrGqdHAh0moQFl_haE/edit?usp=sharing) and rename it.
+**(1)** Donwload [this template](./template_events.ods) and rename it. Import this file into a new google sheet.
 
 __CSV Backup__
 
