@@ -1,27 +1,68 @@
-// add a menu to the toolbar when the add-on is installed or opened
+// add a menu to the toolbar...
 const createMenu = () => {
-  SpreadsheetApp.getUi()
+  const menu = SpreadsheetApp.getUi()
   .createMenu('Publish to S3')
-  .addItem('Configure...', 'showConfig')
-  .addToUi();
+  .addItem('Configure...', 'showConfig');
+
+  if (hasRequiredProps()) {
+    menu.addItem('Publish', 'publish');
+  }
+
+  menu.addToUi();
 };
-const onInstall = createMenu;
-const onOpen = createMenu;
+
+// ...when the add-on is installed or opened
+const onOpen = () => {
+  createMenu();
+};
+
+const onInstall = () => {
+  createMenu();
+};
+
+// https://github.com/liddiard/google-sheet-s3/issues/3#issuecomment-1276788590
+const s3PutObject = (objectName, object) => {
+  const props = PropertiesService.getDocumentProperties().getProperties();
+  const contentType = 'application/json';
+
+  const contentBlob = Utilities.newBlob(JSON.stringify(object), contentType);
+  contentBlob.setName(objectName);
+  
+  const service = 's3';
+  const region = props.awsRegion;
+  const action = 'PutObject';
+  const params = {};
+  const method = 'PUT';
+  const payload = contentBlob.getDataAsString();
+  const headers = {
+    'Content-Type': contentType
+  };
+  const uri = `/${objectName}`;
+  const options = {
+    Bucket: props.bucketName
+  };
+
+  AWS.init(props.awsAccessKeyId, props.awsSecretKey);
+  return AWS.request(service, region, action, params, method, payload, headers, uri, options);
+};
   
 // checks if document has the required configuration settings to publish to S3
 // Note: does not check if the config is valid
 const hasRequiredProps = () => {
   const props = PropertiesService.getDocumentProperties().getProperties();
-  const { bucketName, awsAccessKeyId, awsSecretKey } = props
-  return (bucketName && bucketName.length &&
-          awsAccessKeyId && awsAccessKeyId.length &&
-          awsSecretKey && awsSecretKey.length
-  );
+  const requiredProps = [
+    'bucketName',
+    'awsRegion',
+    'awsAccessKeyId',
+    'awsSecretKey'
+  ];
+  return requiredProps.every(prop => props[prop]);
 };
 
 // publish updated JSON to S3 if changes were made to the first sheet
 const publish = () => {
   const sheet = SpreadsheetApp.getActiveSpreadsheet();
+  const props = PropertiesService.getDocumentProperties().getProperties();
   // do nothing if required configuration settings are not present, or
   // if the edited sheet is not the first one (sheets are indexed from 1,
   // not 0)
@@ -59,36 +100,42 @@ const publish = () => {
     , {})
   );
 
-  // upload to S3
-  // https://engetc.com/projects/amazon-s3-api-binding-for-google-apps-script/
-  const props = PropertiesService.getDocumentProperties().getProperties();
-  const s3 = S3.getInstance(props.awsAccessKeyId, props.awsSecretKey);
-  s3.putObject(props.bucketName, [props.path, sheet.getId()].join('/'), cells);
+  // upload to AWS S3
+  const response = s3PutObject([props.path, sheet.getId()].join('/'), cells);
+  const error = response.toString(); // response is empty if publishing successful
+  if (error) {
+    throw error;
+  }
 };
 
 // show the configuration modal dialog UI
 const showConfig = () => {
   const sheet = SpreadsheetApp.getActiveSpreadsheet(),
     props = PropertiesService.getDocumentProperties().getProperties(),
+    // default to empty strings, otherwise the string "undefined" will be shown
+    // for the value
+    defaultProps = {
+      bucketName: '',
+      path: '',
+      awsRegion: '',
+      awsAccessKeyId: '',
+      awsSecretKey: ''
+    }
     template = HtmlService.createTemplateFromFile('config');
+  
   template.sheetId = sheet.getId();
-  // default to empty strings, otherwise the string "undefined" will be shown
-  // for the value
-  const templateProps = Object.entries(props)
-  .reduce((acc, [key, val]) => Object.assign(acc, { [key]: val || '' }), {});
-  Object.assign(template, templateProps);
+  Object.assign(template, defaultProps, props);
   SpreadsheetApp.getUi()
-  .showModalDialog(template.evaluate(), 'Amazon S3 publish configuration');
-}
+  .showModalDialog(template.evaluate(), 'Amazon S3 publishing configuration');
+};
 
 // update document configuration with values from the modal
 const updateConfig = form => {
   const sheet = SpreadsheetApp.getActiveSpreadsheet();
+  const currentProps = PropertiesService.getDocumentProperties().getProperties();
   PropertiesService.getDocumentProperties().setProperties({
-    bucketName: form.bucketName,
-    path: form.path,
-    awsAccessKeyId: form.awsAccessKeyId,
-    awsSecretKey: form.awsSecretKey
+    ...currentProps,
+    ...form
   });
   let title, message;
   if (hasRequiredProps()) {
@@ -97,25 +144,18 @@ const updateConfig = form => {
       title = '✓ Configuration updated';
       message = `Published spreadsheet will be accessible at:\nhttps://${form.bucketName}.s3.amazonaws.com/${form.path}/${sheet.getId()}`;
     }
-    catch (ex) {
+    catch (error) {
       title = '⚠ Error publishing to S3';
-      message = `Sorry, there was an error publishing your spreadsheet:\n${ex}`;
-    }
-    // If the publish trigger doesn't already exist, create it programatically instead
-    // of manually because manual triggers disappear for no reason. See:
-    // https://code.google.com/p/google-apps-script-issues/issues/detail?id=4854
-    // https://code.google.com/p/google-apps-script-issues/issues/detail?id=5831
-    if (!ScriptApp.getProjectTriggers().some(t => t.getHandlerFunction() === 'publish')) {
-      ScriptApp.newTrigger('publish')
-      .forSpreadsheet(SpreadsheetApp.getActive())
-      .onChange()
-      .create();
+      message = error;
     }
   }
   else {
     title = '⚠ Required info missing';
-    message = 'You need to fill out all fields for your spreadsheet to be published to S3.';
+    message = 'You need to fill out all highlighted fields for your spreadsheet to be published to S3.';
   }
-  const ui = SpreadsheetApp.getUi();
-  ui.alert(title, message, ui.ButtonSet.OK);
-}
+  createMenu(); // update menu to show the "Publish" item if needed
+  if (title || message) {
+    const ui = SpreadsheetApp.getUi();
+    ui.alert(title, message, ui.ButtonSet.OK);
+  }
+};

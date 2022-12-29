@@ -102,6 +102,12 @@
         </li>
 
         <li>
+          <label for="aws-region">AWS region</label>
+          <input id="aws-access-region" name="awsRegion" type="text" value="<?!= awsRegion ?>" placeholder="us-west-2" required />
+          <span class="desc">This value is listed on your S3 bucket's "Properties" page.</span>
+        </li>
+
+        <li>
           <label for="aws-access-key-id">AWS access key ID</label>
           <input id="aws-access-key-id" name="awsAccessKeyId" type="text" value="<?!= awsAccessKeyId ?>" required />
           <span class="desc">Get this value from the <a href="https://console.aws.amazon.com/iam/" target="_blank">IAM Console</a>.</span>
