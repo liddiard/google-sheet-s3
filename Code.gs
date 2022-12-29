@@ -154,8 +154,6 @@ const updateConfig = form => {
     message = 'You need to fill out all highlighted fields for your spreadsheet to be published to S3.';
   }
   createMenu(); // update menu to show the "Publish" item if needed
-  if (title || message) {
-    const ui = SpreadsheetApp.getUi();
-    ui.alert(title, message, ui.ButtonSet.OK);
-  }
+  const ui = SpreadsheetApp.getUi();
+  ui.alert(title, message, ui.ButtonSet.OK);
 };
