@@ -1,4 +1,4 @@
-# <img src="/liddiard/google-sheet-s3/blob/master/img/icon.png?raw=true" alt="logo" width="64px" /> google-sheet-s3
+# <img src="https://github.com/liddiard/google-sheet-s3/blob/master/img/icon.png?raw=true" alt="logo" width="64px" /> google-sheet-s3
 
 A [Google Apps Script](https://developers.google.com/apps-script/) that publishes a Google Sheet to Amazon S3 as a JSON file. Creates an array of objects keyed by column header, maintaining data types like numbers and booleans. 
 
@@ -6,9 +6,40 @@ For example, it turns a spreadsheet like this:
 
 ![Example spreadsheet](img/example_spreadsheet.png)
 
-Into an auto-updating JSON file like this: 
+Into an S3-hosted JSON file like this:
 
-![Example JSON](img/example_json.png)
+```json
+[
+  {
+    "headline": "Lorem ipsum dolor sit amet",
+    "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique senectus et netus et malesuada fames ac turpis egestas. Purus gravida quis blandit turpis cursus in. ",
+    "author": "hliddiard",
+    "post_time": "2022-12-28T23:44:55.000Z",
+    "publish": true
+  },
+  {
+    "headline": "Ut enim ad minim veniam",
+    "body": "Eget lorem dolor sed viverra. Ipsum suspendisse ultrices gravida dictum fusce ut.",
+    "author": "jdoe",
+    "post_time": "2022-12-29T02:20:01.000Z",
+    "publish": true
+  },
+  {
+    "headline": "Duis aute irure dolor",
+    "body": "Aliquam id diam maecenas ultricies mi eget mauris pharetra. Sit amet dictum sit amet justo donec enim diam vulputate. Massa ultricies mi quis hendrerit. Rutrum quisque non tellus orci.",
+    "author": "jdoe",
+    "post_time": "2022-12-29T17:10:22.000Z",
+    "publish": true
+  },
+  {
+    "headline": "Excepteur sint occaecat cupidatat non proident",
+    "body": "Pellentesque habitant morbi tristique senectus et netus et. Est ultricies integer quis auctor elit sed vulputate. Donec et odio pellentesque diam volutpat commodo sed. Sapien et ligula ullamcorper malesuada proin. Accumsan sit amet nulla facilisi morbi tempus.",
+    "author": "hliddiard",
+    "post_time": "2022-12-29T19:45:05.000Z",
+    "publish": false
+  }
+]
+```
 
 Get the add-on [here on the Chrome Web Store](https://chrome.google.com/webstore/detail/publish-sheet-to-s3/dnadifnnmjfmcedgifdienlmloeiongn).
 
