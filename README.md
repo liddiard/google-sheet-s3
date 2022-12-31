@@ -1,14 +1,14 @@
-# <img src="https://github.com/liddiard/google-sheet-s3/blob/master/img/icon.png?raw=true" alt="logo" width="64px" /> google-sheet-s3
+# <img src="/liddiard/google-sheet-s3/blob/master/img/icon.png?raw=true" alt="logo" width="64px" /> google-sheet-s3
 
-A [Google Apps Script](https://developers.google.com/apps-script/) that publishes a Google Sheet to Amazon S3 as a JSON file. Auto-updates on edit & maintains data types. Creates an array of objects keyed by column header.
+A [Google Apps Script](https://developers.google.com/apps-script/) that publishes a Google Sheet to Amazon S3 as a JSON file. Creates an array of objects keyed by column header, maintaining data types like numbers and booleans. 
 
 For example, it turns a spreadsheet like this: 
 
-![spreadsheet](http://i.imgur.com/9k7tY91.png)
+![Example spreadsheet](img/example_spreadsheet.png)
 
 Into an auto-updating JSON file like this: 
 
-![JSON object](http://i.imgur.com/FahoMx4.png)
+![Example JSON](img/example_json.png)
 
 Get the add-on [here on the Chrome Web Store](https://chrome.google.com/webstore/detail/publish-sheet-to-s3/dnadifnnmjfmcedgifdienlmloeiongn).
 
@@ -115,3 +115,11 @@ These links are not publicly accessible – please do not request access. They'r
 
 - [Sheet](https://docs.google.com/spreadsheets/d/19loh8WQudFyClZORX_nNzDvI4iVewVy9v70zdog83Uc/edit#gid=0)
 - [Apps Script](https://script.google.com/macros/d/MIjU_ktgghpXlevjc5UKzGX33-3kBXtAK/edit?uiv=2&mid=ACjPJvGUsuxrK89WuB25at1Q6PF5qzf82zlLc8iciAjnZ97ozdHkwB-uJrS6tcVQDGi9Ydwk2LipQn5ut_8zT_iLLcYDq8aDnysmrjWpMo8PSk42JGUu0jLxp6TkSxMn8HGyQIAruhbBQw)
+
+## Credits
+
+### Logo attribution
+
+- Cloud icon from [onlinewebfonts.com](http://www.onlinewebfonts.com)
+- Arrow by [Alice Design](https://thenounproject.com/rose-alice-design/) from [Noun Project](https://thenounproject.com/browse/icons/term/arrow/)
+- Icon mask generated using [Thomas Finch's iOS 7+ Icon Generator](http://thomasfinch.me/iosicon/)
