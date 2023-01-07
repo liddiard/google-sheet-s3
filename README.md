@@ -70,7 +70,7 @@ We need to get an Amazon Web Services (AWS) S3 bucket and your Google Sheet to t
 
 1. If you don't have one already, [create an Amazon AWS account](https://aws.amazon.com).
 2. If you don't have one already, [create an AWS S3 bucket](https://s3.console.aws.amazon.com/s3/).
-3. If you don't have them already, [generate AWS Security credentials](https://console.aws.amazon.com/iam/home?nc2=h_m_sc#users) that have write permissions to your S3 bucket.
+3. If you don't have one already, [create an IAM user](https://console.aws.amazon.com/iam/home?nc2=h_m_sc#users) that has write permission to your S3 bucket. You'll need these credentials later.
 4. Add a **bucket policy** that enables public viewing of the published JSON. To enable, go to your [S3 Management Console](https://s3.console.aws.amazon.com/s3/), click your bucket's name > Permissions tab > Bucket policy > enter your policy (sample to paste below) > click Save.
 5. If you're going to be accessing the published JSON data from a web browser, you will also need to add a **CORS policy** to your S3 bucket that allows GET requests from whatever origin (domain name) you want to access your data from. To add a policy, go to your [S3 Management Console](https://s3.console.aws.amazon.com/s3/), click your bucket's name > Permissions tab > CORS configuration > enter your policy (sample to paste below) > click Save.
 
@@ -124,10 +124,11 @@ How to use the add-on **after** completing the above AWS setup.
 
 **Did I miss something in these instructions? Not working as expected? Feel free to [file an issue](https://github.com/liddiard/google-sheet-s3/issues).**
 
-That's it! Any time you make a change to the spreadsheet, the changes will be re-published to the JSON file. The JSON file's filename is taken from the spreadsheet ID, so the spreadsheet can be safely renamed without breaking the URL.
+Any time you want to update the published JSON, go to menu item Add-ons > Publish to S3 > Publish.
 
 ## Usage notes
 
+- The JSON file's filename is taken from the spreadsheet ID, so the spreadsheet can be safely renamed without breaking the URL.
 - The add-on only looks at the sequentially first sheet tab (called "Sheet1" by default). It won't publish or respond to changes on other tabs.
 - The add-on will ignore columns that don't have a value in the header (row 1) of the spreadsheet.
 - The add-on will ignore empty rows, skipping over them to the next row with values.
@@ -135,10 +136,13 @@ That's it! Any time you make a change to the spreadsheet, the changes will be re
 
 ## Development setup instructions
 
-1. Create a new Google Apps Script with files whose names and content matches the ones in this repo (minus this readme).
-2. Add the [Amazon S3 API Binding](https://engetc.com/projects/amazon-s3-api-binding-for-google-apps-script/).
-3. In the menu bar, click Publish > Test as add-on...
-4. Select a version, for "Installation Config", choose "Installed and enabled", and select a document (must be a spreadsheet). Save.
+1. Create a new [Google Apps Script](https://script.google.com/home) with files whose names and content matches the ones in this repo (minus this readme).
+2. In the menu bar, click Deploy > Test Deployments.
+3. On the left sidebar, Select type > Editor Add-on.
+4. Under Editor Add-on, press Create new test.
+5. Version: Latest code, Config: Installed and enabled, Test document: (select a spreadsheet to use)
+6. Press Done.
+7. Select the saved test and press Execute.
 
 ### Developement links for version published to Chrome Web Store
 
