@@ -41,13 +41,15 @@ Into an S3-hosted JSON file like this:
 ]
 ```
 
-Get the add-on [here on the Chrome Web Store](https://chrome.google.com/webstore/detail/publish-sheet-to-s3/dnadifnnmjfmcedgifdienlmloeiongn).
+Get the add-on [here on the Chrome Web Store](https://chrome.google.com/webstore/detail/publish-sheet-to-s3/dnadifnnmjfmcedgifdienlmloeiongn). 
+
+**2023 update**: Google has unpublished the add-on for not being up-to-date with their latest developer requirements. I'm working on figuring out the best way to let others install/use it easily. In the meantime, you can use it by following the [development setup instructions](#development-setup-instructions) below.
 
 ## Why?
 
 ### Use case 
 
-"I want to display simple, structured, spreadsheet-like, publicly accessible data on a website (possibly with thousands of simultaneous visitors) that is easily updatable (possibly by multiple people at once) without the overhead and time of coding, deploying, and maintaining a full-blown web application."
+"I want to display simple, structured, spreadsheet-like, publicly accessible data on a website (possibly with thousands of simultaneous visitors) that is easily updatable (possibly by multiple people at once) without the overhead and time of coding, deploying, and maintaining a database, API, and admin interface."
 
 ### Examples
 
