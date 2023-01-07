@@ -41,7 +41,7 @@ Into an S3-hosted JSON file like this:
 ]
 ```
 
-Get the add-on [here on the Chrome Web Store](https://chrome.google.com/webstore/detail/publish-sheet-to-s3/dnadifnnmjfmcedgifdienlmloeiongn).
+Get the add-on [here on the Chrome Web Store](https://chrome.google.com/webstore/detail/publish-sheet-to-s3/dnadifnnmjfmcedgifdienlmloeiongn). **2023 update**: Google has unpublished the add-on for not being up-to-date with their latest developer requirements. I'm working on figuring out the best way to let others install/use it easily. In the meantime, you can use it by following the [development setup instructions](#development-setup-instructions) below.
 
 ## Why?
 
