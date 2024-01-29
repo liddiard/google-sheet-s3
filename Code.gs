@@ -7,6 +7,29 @@ const createMenu = () => {
 };
 const onInstall = createMenu;
 const onOpen = createMenu;
+
+// https://github.com/liddiard/google-sheet-s3/issues/3#issuecomment-1276788590
+const s3PutObject = (objectName, object) => {
+  const props = PropertiesService.getDocumentProperties().getProperties();
+
+  const contentBlob = Utilities.newBlob(JSON.stringify(object), 'application/json');
+  contentBlob.setName(objectName);
+  
+  const service = 's3';
+  const region = 'us-east-2';
+  const action = 'PutObject';
+  const params = {};
+  const method = 'PUT';
+  const payload = contentBlob.getDataAsString();
+  const headers = {};
+  const uri = '/' + objectName;
+  const options = {
+    Bucket: props.bucketName
+  };
+
+  AWS.init(props.awsAccessKeyId, props.awsSecretKey);
+  return AWS.request(service, region, action, params, method, payload, headers, uri, options);
+};
   
 // checks if document has the required configuration settings to publish to S3
 // Note: does not check if the config is valid
@@ -59,11 +82,8 @@ const publish = () => {
     , {})
   );
 
-  // upload to S3
-  // https://engetc.com/projects/amazon-s3-api-binding-for-google-apps-script/
-  const props = PropertiesService.getDocumentProperties().getProperties();
-  const s3 = S3.getInstance(props.awsAccessKeyId, props.awsSecretKey);
-  s3.putObject(props.bucketName, [props.path, sheet.getId()].join('/'), cells);
+  // upload to AWS S3
+  s3PutObject([props.path, sheet.getId()].join('/'), cells);
 };
 
 // show the configuration modal dialog UI
